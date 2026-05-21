@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haz Parte del Cambio · I.E Héctor Abad Gómez</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-badge"><img src="Fotos/Caracol.webp" alt="Logo"></div>
+    <div class="nav-name">I.E <small>Héctor Abad Gómez</small></div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li>
+      <a href="#">Contenido <span class="arr">▾</span></a>
+      <div class="drop">
+        <a href="galeria.html">Galería de fotos</a>
+        <a href="podcast.html">Podcast</a>
+      </div>
+    </li>
+    <li>
+      <a href="#" class="nav-active">Apóyanos <span class="arr">▾</span></a>
+      <div class="drop">
+        <a href="donaciones.html">Donaciones</a>
+        <a href="voluntariado.html" class="drop-active">Voluntariado</a>
+      </div>
+    </li>
+    <li>
+      <a href="#contenido">Nosotros <span class="arr">▾</span></a>
+      <div class="drop">
+        <a href="historia.html">Nuestra historia</a>
+        <a href="mision.html">Misión y visión</a>
+        <a href="equipo.html">El equipo</a>
+      </div>
+    </li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <button class="hamburger" id="ham" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MENÚ MÓVIL -->
+<div class="mob-menu" id="mobMenu">
+  <a href="index.html" onclick="closeMenu()">Inicio</a>
+  <a href="historia.html" class="sub" onclick="closeMenu()">↳ Nuestra historia</a>
+  <a href="mision.html" class="sub" onclick="closeMenu()">↳ Misión y visión</a>
+  <a href="equipo.html" class="sub" onclick="closeMenu()">↳ El equipo</a>
+  <a href="galeria.html" onclick="closeMenu()">Galería</a>
+  <a href="podcast.html" class="sub" onclick="closeMenu()">↳ Podcast</a>
+  <a href="donaciones.html" onclick="closeMenu()">Donaciones</a>
+  <a href="voluntariado.html" class="sub" onclick="closeMenu()">↳ Voluntariado</a>
+  <a href="contacto.html" onclick="closeMenu()">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <h1>Haz Parte del Cambio</h1>
+  <p>Únete a nuestros procesos artísticos, culturales y comunitarios.</p>
+</section>
+
+<!-- CONTENIDO -->
+<section class="page-content">
+
+  <div class="donation-grid">
+    <div class="donation-card">
+      <h3>🎨 Artistas</h3>
+      <p>Participa en la creación de murales, talleres y proyectos culturales junto a la comunidad.</p>
+    </div>
+    <div class="donation-card">
+      <h3>📸 Fotografía</h3>
+      <p>Documenta procesos artísticos, actividades culturales y memorias del territorio.</p>
+    </div>
+    <div class="donation-card">
+      <h3>🎙 Comunicación</h3>
+      <p>Apoya redes sociales, contenido audiovisual y difusión de proyectos culturales.</p>
+    </div>
+    <div class="donation-card">
+      <h3>🧑‍🏫 Talleristas</h3>
+      <p>Comparte tus conocimientos en arte, música, diseño, fotografía o expresión cultural.</p>
+    </div>
+    <div class="donation-card">
+      <h3>🧹 Logística</h3>
+      <p>Ayuda en la organización de eventos, jornadas culturales y actividades comunitarias.</p>
+    </div>
+    <div class="donation-card">
+      <h3>🌱 Comunidad</h3>
+      <p>Cualquier persona puede participar aportando ideas, tiempo y apoyo a los procesos.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h2>Construimos comunidad desde el arte</h2>
+    <p>Creemos en el trabajo colectivo como herramienta para fortalecer la identidad, la memoria y la participación cultural en el territorio.</p>
+    <br>
+    <a href="formulario.html" class="btn-orange">Quiero participar</a>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="foot-logo-wrap">
+        <div class="nav-badge"><img src="Fotos/Caracol.webp" alt="Logo"></div>
+        <div class="foot-name">Raíces y Sueños <small>Medellín</small></div>
+      </div>
+      <p class="foot-brand-desc">Proyecto cultural enfocado en la memoria, el arte y la transformación social.</p>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/i.e.hectorabadgomez/" target="_blank" class="fsoc" title="Instagram">IG</a>
+        <a href="https://www.tiktok.com/@ie_hectorabadgomez" target="_blank" class="fsoc" title="TikTok">TK</a>
+        <a href="https://www.youtube.com/@InstituciónEducativaHéctorAbad" target="_blank" class="fsoc" title="YouTube">YT</a>
+        <a href="https://open.spotify.com/show/0t5j8xwTU0EZu17c2sRldK?si=yj74eSirT-2tcKzNIiZzvQ" target="_blank" class="fsoc" title="Spotify">SP</a>
+      </div>
+    </div>
+
+    <div class="foot-col">
+      <h4>Contacto</h4>
+      <p>Cra. 44 #43-96, Medellín</p>
+      <a href="mailto:contacto@raicesysuenos.co">proyectoshectorabadgomez@gmail.com</a>
+    </div>
+
+    <div class="foot-col">
+      <h4>Explorar</h4>
+      <a href="galeria.html">Galería</a>
+      <a href="podcast.html">Podcast</a>
+      <a href="donaciones.html">Donaciones</a>
+    </div>
+  </div>
+
+  <div class="foot-bottom">
+    <span>© 2026 Raíces y Sueños</span>
+    <span>Hecho en Medellín</span>
+  </div>
+</footer>
+
+<!-- ───────── CARACOL ───────── -->
+<div class="snail-btn">
+  <div class="snail-bubble" id="snailBubble">
+    <button class="snail-close" onclick="closeSnail()">
+      ✕
+    </button>
+
+    <strong>
+      ¡Hola! Soy Niki
+    </strong>
+
+    <p>
+      ¿Qué quieres explorar?
+    </p>
+
+    <ul>
+
+      <li>
+        <a href="galeria.html">📸 Ver galería</a>
+      </li>
+
+      <li>
+        <a href="podcast.html">🎙 Escuchar podcast</a>
+      </li>
+
+      <li>
+        <a href="voluntariado.html">🤝 Voluntariado</a>
+      </li>
+
+      <li>
+        <a href="donaciones.html">💛 Donar</a>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- BOTÓN DEL CARACOL -->
+  <button class="snail-face" onclick="toggleSnail()">
+    <img src="Fotos/Caracol.webp" alt="Caracol">
+  </button>
+
+  <span class="snail-label">
+    Ayuda
+  </span>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería · I.E Héctor Abad Gómez</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-badge"><img src="Fotos/Caracol.webp" alt="Logo"></div>
+    <div class="nav-name">I.E <small>Héctor Abad Gómez</small></div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li>
+      <a href="#" class="nav-active">Contenido <span class="arr">▾</span></a>
+      <div class="drop">
+        <a href="galeria.html" class="drop-active">Galería de fotos</a>
+        <a href="podcast.html">Podcast</a>
+      </div>
+    </li>
+    <li>
+      <a href="#">Apóyanos <span class="arr">▾</span></a>
+      <div class="drop">
+        <a href="donaciones.html">Donaciones</a>
+        <a href="voluntariado.html">Voluntariado</a>
+      </div>
+    </li>
+    <li>
+      <a href="#contenido">Nosotros <span class="arr">▾</span></a>
+      <div class="drop">
+        <a href="historia.html">Nuestra historia</a>
+        <a href="mision.html">Misión y visión</a>
+        <a href="equipo.html">El equipo</a>
+      </div>
+    </li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <button class="hamburger" id="ham" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MENÚ MÓVIL -->
+<div class="mob-menu" id="mobMenu">
+  <a href="index.html" onclick="closeMenu()">Inicio</a>
+  <a href="historia.html" class="sub" onclick="closeMenu()">↳ Nuestra historia</a>
+  <a href="mision.html" class="sub" onclick="closeMenu()">↳ Misión y visión</a>
+  <a href="equipo.html" class="sub" onclick="closeMenu()">↳ El equipo</a>
+  <a href="galeria.html" onclick="closeMenu()">Galería</a>
+  <a href="podcast.html" class="sub" onclick="closeMenu()">↳ Podcast</a>
+  <a href="donaciones.html" onclick="closeMenu()">Donaciones</a>
+  <a href="voluntariado.html" class="sub" onclick="closeMenu()">↳ Voluntariado</a>
+  <a href="contacto.html" onclick="closeMenu()">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <h1>Galería Cultural</h1>
+  <p>Murales, fotografías y espacios que conservan la memoria y la identidad de nuestra comunidad.</p>
+</section>
+
+<!-- SECCIÓN CULTURAL -->
+<section class="mural-intro-section">
+  <div class="mural-intro-inner">
+
+    <div class="mural-intro-lead">
+      <div class="sec-eyebrow">
+        <div class="sec-line"></div>
+        <span class="sec-lbl">Museo Escolar · Un mundo de murales, no de muros</span>
+        <div class="sec-line"></div>
+      </div>
+      <h2 class="sec-title">Arte que transforma la escuela</h2>
+      <p class="mural-intro-desc">El Museo Escolar de la I.E. Héctor Abad Gómez es un espacio pedagógico y cultural vivo, conformado por 24 murales realizados por 14 artistas internacionales, nacionales y locales. Cada obra es un acto de memoria, resistencia e identidad.</p>
+    </div>
+
+    <div class="mural-pillars">
+      <div class="mural-pillar">
+        <div class="mural-pillar-icon">🎨</div>
+        <h4>Arte como herramienta pedagógica</h4>
+        <p>Los murales se integran al currículo de la institución como recursos didácticos para explorar temas históricos, culturales y sociales, permitiendo a los estudiantes conectar el conocimiento académico con su realidad.</p>
+      </div>
+      <div class="mural-pillar">
+        <div class="mural-pillar-icon">🌍</div>
+        <h4>Diversidad e inclusión</h4>
+        <p>Cada mural narra historias de estudiantes migrantes, comunidades indígenas Emberá, afrocolombianos y personas en situación de desplazamiento. La diversidad cultural de la institución se vuelve visible y celebrada en sus paredes.</p>
+      </div>
+      <div class="mural-pillar">
+        <div class="mural-pillar-icon">🕊️</div>
+        <h4>Memoria y construcción de paz</h4>
+        <p>Inspirado en el legado de Héctor Abad Gómez, el museo actúa como un espacio de justicia restaurativa simbólica donde la comunidad educativa elabora colectivamente el pasado y construye un futuro de convivencia.</p>
+      </div>
+      <div class="mural-pillar">
+        <div class="mural-pillar-icon">🤝</div>
+        <h4>Creación colectiva</h4>
+        <p>Estudiantes de grados 8° a 11° se forman como mediadores culturales que guían recorridos, activan los murales como escenarios de diálogo y construyen sentido de pertenencia y agencia cultural en el territorio.</p>
+      </div>
+    </div>
+
+    <div class="mural-stat-strip">
+      <div class="mural-stat">
+        <span class="mural-stat-n">INFINITAS</span>
+        <span class="mural-stat-l">historias que pintar</span>
+      </div>
+      <div class="mural-stat">
+        <span class="mural-stat-n">500</span>
+        <span class="mural-stat-l">VOLUNTARIOS</span>
+      </div>
+      <div class="mural-stat">
+        <span class="mural-stat-n">4</span>
+        <span class="mural-stat-l">Pisos de la sede DLC</span>
+      </div>
+      <div class="mural-stat">
+        <span class="mural-stat-n">2 AÑOS</span>
+        <span class="mural-stat-l">PINTANDO HISTORIAS</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="gallery-grid">
+
+  <div class="gallery-item" onclick="openModal(
+    'Los muros que habitan el movimiento',
+    '¿Puede un muro ser, al mismo tiempo, un refugio y un camino? Para el artista Yankamanta, la respuesta está en el color. En el corazón de Medellín, donde las historias de tránsito y desplazamiento convergen, el arte deja de ser un adorno para convertirse en un acto de cuidado. Inspirado en las luchas sociales y el saber ancestral de los pueblos Emberá y las comunidades indígenas del Ecuador, Yankamanta ha transformado la arquitectura de la I.E. Héctor Abad Gómez en un puente. Aquí, la iconografía milenaria se entrelaza con el presente para recordarnos que la cultura no es algo estático; la cultura es, en sí misma, movimiento. Este mural nace del deseo de visibilizar cómo la identidad se reconstruye mientras caminamos. Es un homenaje a los corazones propios y foráneos que deambulan por la ciudad buscando pertenencia. Al retratar los sueños y afectos de los niños y niñas en movimiento, la obra convierte el espacio educativo en un punto de enunciación: un lugar donde las memorias colectivas no se pierden, sino que florecen.',
+    'Fotos/Murales/Colegio.webp'
+    )">
+    <img src="Fotos/Murales/Colegio.webp" alt="Los muros que habitan el movimiento">
+  </div>
+
+  <div class="gallery-item" onclick="openModal(
+    'El despertar de la naturaleza en el asfalto',
+    '¿Cuándo fue la última vez que te detuviste a contemplar el vínculo que nos une con la tierra? Para la artista colombiana Gleo (Natalia Gallego), cada muro es una oportunidad para recordarnos que no somos observadores de la naturaleza, sino que somos uno con ella. En su intervención para el festival Extramural en la I.E. Héctor Abad Gómez, Gleo ha transformado los muros cotidianos en una puerta hacia la contemplación interior. A través de una paleta vibrante de amarillos y tonos tropicales, su obra baña el espacio escolar con la calidez del sol, invitando a estudiantes y caminantes a reconocerse como parte de algo mucho mayor. Más que pintura sobre concreto, este mural es un diálogo. Al integrar rostros humanos con símbolos ancestrales y formas orgánicas, Gleo explora la conexión como eje central de nuestra identidad.',
+    'Fotos/Murales/Sol.webp'
+    )">
+    <img src="Fotos/Murales/Sol.webp" alt="El despertar de la naturaleza en el asfalto">
+  </div>
+
+ <div class="gallery-item" onclick="openModal(
+    'El equipaje de la esperanza: muros que narran el barrio',
+    '¿Qué lleva un niño en su mochila cuando recorre las calles? Para el Colectivo Jagua, esa mochila no solo carga libros, sino un mundo de sueños, colores y memorias ancestrales. En su intervención para el Festival Extramural en la I.E. Héctor Abad Gómez, este colectivo ha logrado lo que parece imposible: convertir el concreto en una superficie viva. A través de un realismo vibrante, Jagua rinde homenaje a los niños y niñas que, entre historias de migración y cambio, llegan a la escuela para reconstruir su mundo. El mural, que custodia tanto el interior como el exterior de la cancha, no es solo estética; es una herramienta pedagógica. Cada trazo de fauna y flora latinoamericana es un puente que conecta el pasado indígena con el presente urbano de Medellín.',
+    'Fotos/Murales/Pintora.webp'
+    )">
+    <img src="Fotos/Murales/Pintora.webp" alt="El equipaje de la esperanza: muros que narran el barrio">
+  </div>
+
+  <div class="gallery-item" onclick="openModal(
+    'Corazones en movimiento: un puente entre los Andes y el barrio',
+    '¿Qué sucede cuando los sueños de la infancia se encuentran con la memoria de los pueblos originarios? En los muros de la I.E. Héctor Abad Gómez, las artistas Shetukiltra y Balboa han tejido un relato visual donde el sur del continente se abraza con Medellín. Inspiradas por las voces de los niños y niñas del colegio, la fuerza ancestral del pueblo Mapuche y las comunidades andinas, esta obra nos presenta cómo protegemos nuestros afectos mientras transitamos por el mundo. A través de los colores y los símbolos, la obra nos recuerda la importancia de cuidar aquello que es importante para nosotros. Bajo la influencia poética de referentes como Cecilia Vicuña, el mural nos recuerda que la cultura no es algo estático, sino un movimiento constante.',
+    'Fotos/Murales/Jaguar.webp'
+    )">
+    <img src="Fotos/Murales/Jaguar.webp" alt="Corazones en movimiento: un puente entre los Andes y el barrio">
+  </div>
+  
+
+  <div class="gallery-item" onclick="openModal('Mural 2','Historia del mural 2','Fotos/Murales/Héctor con flores.webp')">
+    <img src="Fotos/Murales/Héctor con flores.webp" alt="Mural 2">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 3','Historia del mural 3','Fotos/Murales/Hombre negro.webp')">
+    <img src="Fotos/Murales/Hombre negro.webp" alt="Mural 3">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 4','Historia del mural 4','Fotos/Murales/Cositas.webp')">
+    <img src="Fotos/Murales/Cositas.webp" alt="Mural 4">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 5','Historia del mural 5','Fotos/Murales/Mariposas.webp')">
+    <img src="Fotos/Murales/Mariposas.webp" alt="Mural 5">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 6','Historia del mural 6','Fotos/Murales/Indios.webp')">
+    <img src="Fotos/Murales/Indios.webp" alt="Mural 6">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 7','Historia del mural 7','Fotos/Murales/Bebé.webp')">
+    <img src="Fotos/Murales/Bebé.webp" alt="Mural 7">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 8','Historia del mural 8','Fotos/Murales/Niños jugando.webp')">
+    <img src="Fotos/Murales/Niños jugando.webp" alt="Mural 8">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 10','Historia del mural 10','Fotos/Murales/Pájaro.webp')">
+    <img src="Fotos/Murales/Pájaro.webp" alt="Mural 10">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 11','Historia del mural 11','Fotos/Murales/Plato.webp')">
+    <img src="Fotos/Murales/Plato.webp" alt="Mural 11">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 12','Historia del mural 12','Fotos/Murales/Caricatura.webp')">
+    <img src="Fotos/Murales/Caricatura.webp" alt="Mural 12">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 13','Historia del mural 13','Fotos/Murales/Perro.webp')">
+    <img src="Fotos/Murales/Perro.webp" alt="Mural 13">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 14','Historia del mural 14','Fotos/Murales/Héctor.webp')">
+    <img src="Fotos/Murales/Héctor.webp" alt="Mural 14">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 15','Historia del mural 15','Fotos/Murales/Jóvenes.webp')">
+    <img src="Fotos/Murales/Jóvenes.webp" alt="Mural 15">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 16','Historia del mural 16','Fotos/Murales/Mural amarillo.webp')">
+    <img src="Fotos/Murales/Mural amarillo.webp" alt="Mural 16">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 17','Historia del mural 17','Fotos/Murales/Niña.webp')">
+    <img src="Fotos/Murales/Niña.webp" alt="Mural 17">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 18','Historia del mural 18','Fotos/Murales/Personajes.webp')">
+    <img src="Fotos/Murales/Personajes.webp" alt="Mural 18">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 19','Historia del mural 19','Fotos/Murales/Mujer.webp')">
+    <img src="Fotos/Murales/Mujer.webp" alt="Mural 19">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 20','Historia del mural 20','Fotos/Murales/Niños al revés.webp')">
+    <img src="Fotos/Murales/Niños al revés.webp" alt="Mural 20">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 21','Historia del mural 21','Fotos/Murales/Manos.webp')">
+    <img src="Fotos/Murales/Manos.webp" alt="Mural 21">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 22','Historia del mural 22','Fotos/Murales/Bebé en brazos.webp')">
+    <img src="Fotos/Murales/Bebé en brazos.webp" alt="Mural 22">
+  </div>
+
+  <div class="gallery-item" onclick="openModal('Mural 23','Historia del mural 23','Fotos/Murales/Árbol.webp')">
+    <img src="Fotos/Murales/Árbol.webp" alt="Mural 23">
+  </div>
+
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <span class="close" onclick="closeModal()">✕</span>
+    <img id="modal-img" alt="">
+    <div class="modal-text-wrap">
+      <h2 id="modal-title"></h2>
+      <p id="modal-desc"></p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="foot-logo-wrap">
+        <div class="nav-badge"><img src="Fotos/Caracol.webp" alt="Logo"></div>
+        <div class="foot-name">Raíces y Sueños <small>Medellín</small></div>
+      </div>
+      <p class="foot-brand-desc">Proyecto cultural enfocado en la memoria, el arte y la transformación social.</p>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/i.e.hectorabadgomez/" target="_blank" class="fsoc" title="Instagram">IG</a>
+        <a href="https://www.tiktok.com/@ie_hectorabadgomez" target="_blank" class="fsoc" title="TikTok">TK</a>
+        <a href="https://www.youtube.com/@InstituciónEducativaHéctorAbad" target="_blank" class="fsoc" title="YouTube">YT</a>
+        <a href="https://open.spotify.com/show/0t5j8xwTU0EZu17c2sRldK?si=yj74eSirT-2tcKzNIiZzvQ" target="_blank" class="fsoc" title="Spotify">SP</a>
+      </div>
+    </div>
+
+    <div class="foot-col">
+      <h4>Contacto</h4>
+      <p>Cra. 44 #43-96, Medellín</p>
+      <a href="mailto:proyectoshectorabadgomez@gmail.com">proyectoshectorabadgomez@gmail.com</a>
+    </div>
+
+    <div class="foot-col">
+      <h4>Explorar</h4>
+      <a href="galeria.html">Galería</a>
+      <a href="podcast.html">Podcast</a>
+      <a href="donaciones.html">Donaciones</a>
+    </div>
+  </div>
+
+  <div class="foot-bottom">
+    <span>© 2026 Raíces y Sueños</span>
+    <span>Hecho en Medellín</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<!-- ───────── CARACOL ───────── -->
+<div class="snail-btn">
+  <div class="snail-bubble" id="snailBubble">
+    <button class="snail-close" onclick="closeSnail()">
+      ✕
+    </button>
+
+    <strong>
+      ¡Hola! Soy Niki
+    </strong>
+
+    <p>
+      ¿Qué quieres explorar?
+    </p>
+
+    <ul>
+
+      <li>
+        <a href="galeria.html">📸 Ver galería</a>
+      </li>
+
+      <li>
+        <a href="podcast.html">🎙 Escuchar podcast</a>
+      </li>
+
+      <li>
+        <a href="voluntariado.html">🤝 Voluntariado</a>
+      </li>
+
+      <li>
+        <a href="donaciones.html">💛 Donar</a>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- BOTÓN DEL CARACOL -->
+  <button class="snail-face" onclick="toggleSnail()">
+    <img src="Fotos/Caracol.webp" alt="Caracol">
+  </button>
+
+  <span class="snail-label">
+    Ayuda
+  </span>
+
+</div>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/573000000000" class="wa-btn" target="_blank" title="WhatsApp">💬</a>
+<script src="script.js"></script>
+
+<script>
+  function openModal(title, desc, img) {
+    document.getElementById('modal').style.display = 'flex';
+    document.getElementById('modal-title').innerText = title;
+    document.getElementById('modal-desc').innerText = desc;
+    document.getElementById('modal-img').src = img;
+  }
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Podcast</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-badge"><img src="Fotos/Caracol.webp" alt="Logo"></div>
+    <div class="nav-name">I.E<small>Héctor Abad Gómez</small></div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li>
+      <a href="#" class="nav-active">Contenido <span class="arr">▾</span></a>
+      <div class="drop">
+        <a href="galeria.html">Galería de fotos</a>
+        <a href="podcast.html" class="drop-active">Podcast</a>
+      </div>
+    </li>
+    <li>
+      <a href="#voluntariado">Apóyanos <span class="arr">▾</span></a>
+      <div class="drop">
+        <a href="donaciones.html">Donaciones</a>
+        <a href="voluntariado.html">Voluntariado</a>
+      </div>
+    </li>
+    <li>
+      <a href="#contenido">Nosotros <span class="arr">▾</span></a>
+      <div class="drop">
+        <a href="historia.html">Nuestra historia</a>
+        <a href="mision.html" >Misión y visión</a>
+        <a href="equipo.html">El equipo</a>
+      </div>
+    </li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <button class="hamburger" id="ham" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Menú móvil -->
+<div class="mob-menu" id="mobMenu">
+  <a href="index.html" onclick="closeMenu()">Inicio</a>
+  <a href="historia.html" onclick="closeMenu()">Nuestra historia</a>
+  <a href="mision.html" onclick="closeMenu()"> Misión y Visión</a>
+  <a href="equipo.html" onclick="closeMenu()"> Equipo</a>
+  <a href="galeria.html" onclick="closeMenu()"> Galería de fotos</a>
+  <a href="podcast.html" onclick="closeMenu()"> Podcast</a>
+  <a href="donaciones.html" onclick="closeMenu()">Donaciones</a>
+  <a href="voluntariado.html" onclick="closeMenu()">Voluntariado</a>
+  <a href="contacto.html" onclick="closeMenu()">Contacto</a>
+</div>
+
+<!-- ── HERO ── -->
+<div class="pod-hero">
+  <div class="pod-hero-inner">
+    <div class="pod-eyebrow">
+      <div class="pod-eyebrow-line"></div>
+      <span class="pod-eyebrow-lbl">Museo de Murales</span>
+      <div class="pod-eyebrow-line"></div>
+    </div>
+    <div class="pod-hero-badge">🎙 4 episodios disponibles</div>
+    <h1>Arte que cuenta historias</h1>
+    <p>Cada episodio es una conversación sobre el mural que lo inspiró: sus historias, sus artistas y las memorias de quienes construyen esta comunidad.</p>
+  </div>
+</div>
+
+<!-- ── FILTRO ── -->
+<div class="pod-filters">
+  <button class="pod-filter-btn active" onclick="filterPod(this, 'todo')">Todos</button>
+  <button class="pod-filter-btn" onclick="filterPod(this, '2022')">2022</button>
+  <button class="pod-filter-btn" onclick="filterPod(this, '2023')">2023</button>
+  <button class="pod-filter-btn" onclick="filterPod(this, '2024')">2024</button>
+</div>
+
+<!-- ── CONTENIDO ── -->
+<main class="pod-main">
+
+  <!-- FEATURED -->
+  <p class="pod-section-title">Episodio destacado</p>
+
+  <div class="pod-featured" data-y="2024">
+    <div class="pod-featured-img">
+      <img src="Fotos/Murales/Niños.jpg" alt="Las Alas del Barrio">
+      <div class="pod-featured-img-overlay">
+        <div class="pod-featured-img-num">EP1</div>
+      </div>
+    </div>
+    <div class="pod-featured-body">
+      <div class="pod-ep-tag"><div class="dot"></div> Episodio 1 · Junio 2024</div>
+      <h2>La memoria del barrio</h2>
+      <p>Una conversación sobre el mural "Las Alas del Barrio" y cómo nació de las voces de los jóvenes del barrio. Los artistas del Colectivo Arte nos cuentan el proceso creativo y comunitario de esta obra que hoy vive en los muros del colegio.</p>
+      <div class="pod-meta-row">
+        <span class="pod-meta-item">🕐 1:23 min</span>
+        <span class="pod-meta-item">🎨 Mural · Las Alas del Barrio</span>
+        <span class="pod-meta-item">👥 Colectivo Arte</span>
+      </div>
+      <div class="pod-actions">
+        <button class="pod-play-btn" onclick="toggleInline('1')">▶ Escuchar ahora</button>
+        <a href="#" class="pod-share-btn">↗ Compartir</a>
+      </div>
+      <!-- REPRODUCTOR INLINE FEATURED -->
+      <div class="inline-player" id="player-1-featured">
+        <button class="ip-play" onclick="toggleInlineFeatured()">▶</button>
+        <span class="ip-time" id="cur-1f">0:00</span>
+        <input type="range" class="ip-bar" id="bar-1f" value="0" min="0" max="100" step="0.1" oninput="seekInline('1', this.value)">
+        <span class="ip-time" id="dur-1f">--:--</span>
+        <span class="ip-vol">🔊</span>
+        <input type="range" class="ip-vol-bar" value="80" min="0" max="100" oninput="document.getElementById('audio-1').volume=this.value/100">
+      </div>
+    </div>
+  </div>
+
+  <!-- LISTA -->
+  <p class="pod-section-title">Todos los episodios</p>
+
+  <div class="pod-list" id="podList">
+
+    <!-- EP 01 -->
+    <div class="pod-item" data-y="2024">
+      <div class="pod-item-num">
+        <img src="Fotos/Murales/Niños.JPG" alt="">
+        <div class="pod-item-num-text">1</div>
+      </div>
+      <div class="pod-item-info">
+        <div class="pod-item-ep">EP 01 · Junio 2024</div>
+        <div class="pod-item-title">La memoria del barrio</div>
+        <div class="pod-item-desc">Mural "Las Alas del Barrio" · Colectivo Arte · Colegio del barrio</div>
+        <div class="pod-item-meta">Identidad, sueños y raíces territoriales</div>
+        <!-- REPRODUCTOR INLINE -->
+        <div class="inline-player" id="player-1">
+          <audio id="audio-1" src="Audios/La memoria del barrio.wav" preload="none"></audio>
+          <button class="ip-play" onclick="toggleInline('1')">▶</button>
+          <span class="ip-time" id="cur-1">0:00</span>
+          <input type="range" class="ip-bar" id="bar-1" value="0" min="0" max="100" step="0.1" oninput="seekInline('1', this.value)">
+          <span class="ip-time" id="dur-1">--:--</span>
+          <span class="ip-vol">🔊</span>
+          <input type="range" class="ip-vol-bar" value="80" min="0" max="100" oninput="document.getElementById('audio-1').volume=this.value/100">
+        </div>
+      </div>
+      <div class="pod-item-right">
+        <span class="pod-item-dur">1:23 min</span>
+        <button class="pod-item-play" onclick="toggleInline('1')">▶</button>
+      </div>
+    </div>
+
+    <!-- EP 02 -->
+    <div class="pod-item" data-y="2023">
+      <div class="pod-item-num">
+        <img src="Fotos/Murales/Colegio.webp">
+        <div class="pod-item-num-text">2</div>
+      </div>
+      <div class="pod-item-info">
+        <div class="pod-item-ep">EP 02 · Marzo 2023</div>
+        <div class="pod-item-title">Manos que Construyen Paz</div>
+        <div class="pod-item-desc">Mural "Manos que Construyen Paz" · María García</div>
+        <div class="pod-item-meta">Proceso colectivo y participación comunitaria</div>
+        <div class="inline-player" id="player-2">
+          <audio id="audio-2" src="Audios/Fotografía y memoria colectiva.wav" preload="none"></audio>
+          <button class="ip-play" onclick="toggleInline('2')">▶</button>
+          <span class="ip-time" id="cur-2">0:00</span>
+          <input type="range" class="ip-bar" id="bar-2" value="0" min="0" max="100" step="0.1" oninput="seekInline('2', this.value)">
+          <span class="ip-time" id="dur-2">--:--</span>
+          <span class="ip-vol">🔊</span>
+          <input type="range" class="ip-vol-bar" value="80" min="0" max="100" oninput="document.getElementById('audio-2').volume=this.value/100">
+        </div>
+      </div>
+      <div class="pod-item-right">
+        <span class="pod-item-dur">1:30 min</span>
+        <button class="pod-item-play" onclick="toggleInline('2')">▶</button>
+      </div>
+    </div>
+
+    <!-- EP 03 -->
+    <div class="pod-item" data-y="2024">
+      <div class="pod-item-num">
+        <img src="Fotos/Murales/Comunidad.JPG" alt="">
+        <div class="pod-item-num-text">3</div>
+      </div>
+      <div class="pod-item-info">
+        <div class="pod-item-ep">EP 03 · Enero 2024</div>
+        <div class="pod-item-title">Raíces y Sueños</div>
+        <div class="pod-item-desc">Mural "Raíces y Sueños" · Arte Social · Galería Sueños</div>
+        <div class="pod-item-meta">Memoria, territorio y sentido de pertenencia</div>
+        <div class="inline-player" id="player-3">
+          <audio id="audio-3" src="Audios/Identidad y territorio.wav" preload="none"></audio>
+          <button class="ip-play" onclick="toggleInline('3')">▶</button>
+          <span class="ip-time" id="cur-3">0:00</span>
+          <input type="range" class="ip-bar" id="bar-3" value="0" min="0" max="100" step="0.1" oninput="seekInline('3', this.value)">
+          <span class="ip-time" id="dur-3">--:--</span>
+          <span class="ip-vol">🔊</span>
+          <input type="range" class="ip-vol-bar" value="80" min="0" max="100" oninput="document.getElementById('audio-3').volume=this.value/100">
+        </div>
+      </div>
+      <div class="pod-item-right">
+        <span class="pod-item-dur">1:13 min</span>
+        <button class="pod-item-play" onclick="toggleInline('3')">▶</button>
+      </div>
+    </div>
+
+    <!-- EP 04 -->
+    <div class="pod-item" data-y="2022">
+      <div class="pod-item-num">
+        <img src="Fotos/Murales/Caras.JPG" alt="">
+        <div class="pod-item-num-text">4</div>
+      </div>
+      <div class="pod-item-info">
+        <div class="pod-item-ep">EP 04 · Nov 2022</div>
+        <div class="pod-item-title">La fuerza del pueblo</div>
+        <div class="pod-item-desc">Mural "La Fuerza del Pueblo" · Juan Rodríguez</div>
+        <div class="pod-item-meta">Arte urbano, grafiti y expresión juvenil</div>
+        <div class="inline-player" id="player-4">
+          <audio id="audio-4" src="Audios/La fuerza del pueblo.wav" preload="none"></audio>
+          <button class="ip-play" onclick="toggleInline('4')">▶</button>
+          <span class="ip-time" id="cur-4">0:00</span>
+          <input type="range" class="ip-bar" id="bar-4" value="0" min="0" max="100" step="0.1" oninput="seekInline('4', this.value)">
+          <span class="ip-time" id="dur-4">--:--</span>
+          <span class="ip-vol">🔊</span>
+          <input type="range" class="ip-vol-bar" value="80" min="0" max="100" oninput="document.getElementById('audio-4').volume=this.value/100">
+        </div>
+      </div>
+      <div class="pod-item-right">
+        <span class="pod-item-dur">1:08 min</span>
+        <button class="pod-item-play" onclick="toggleInline('4')">▶</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PLATAFORMAS -->
+  <div class="pod-platforms">
+    <h3>Escúchanos donde quieras</h3>
+    <p>Disponible en tus plataformas de podcast favoritas</p>
+    <div class="pod-platform-btns">
+      <a href="#" class="pod-platform-btn">🎵 Spotify</a>
+      <a href="#" class="pod-platform-btn">🎙 Apple Podcasts</a>
+      <a href="#" class="pod-platform-btn">▶ YouTube</a>
+      <a href="#" class="pod-platform-btn">☁ SoundCloud</a>
+    </div>
+  </div>
+
+</main>
+
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="foot-logo-wrap">
+        <div class="nav-badge">
+          <img src="Fotos/Caracol.webp" alt="">
+        </div>
+        <div class="foot-name">
+          Raíces y Sueños
+          <small>Medellín</small>
+        </div>
+      </div>
+      <p class="foot-brand-desc">
+        Proyecto cultural enfocado en la memoria, el arte y la transformación social.
+      </p>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/i.e.hectorabadgomez/" target="_blank" class="fsoc" title="Instagram">IG</a>
+        <a href="https://www.tiktok.com/@ie_hectorabadgomez" target="_blank" class="fsoc" title="TikTok">TK</a>
+        <a href="https://www.youtube.com/@Instituci%C3%B3nEducativaH%C3%A9ctorAbad" target="_blank" class="fsoc" title="YouTube">YT</a>
+        <a href="https://open.spotify.com/show/0t5j8xwTU0EZu17c2sRldK?si=yj74eSirT-2tcKzNIiZzvQ" target="_blank" class="fsoc" title="Spotify">SP</a>
+      </div>
+    </div>
+    <div class="foot-col">
+
+      <h4>Contacto</h4>
+
+      <p>
+        Cra. 44 #43-96
+      </p>
+
+      <p>
+        Medellín, Colombia
+      </p>
+
+      <a href="mailto:proyectoshectorabadgomez@gmail.com">
+        proyectoshectorabadgomez@gmail.com
+      </a>
+
+    </div>
+
+    <div class="foot-col">
+
+      <h4>Explorar</h4>
+
+      <a href="galeria.html">
+        Galería
+      </a>
+
+      <a href="podcast.html">
+        Podcast
+      </a>
+
+      <a href="donaciones.html">
+        Donaciones
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="foot-bottom">
+
+    <span>
+      © 2026 Raíces y Sueños
+    </span>
+
+    <span>
+      Hecho en Medellín
+    </span>
+
+  </div>
+
+</footer>
+
+<audio id="podAudio"></audio>
+
+<script src="script.js"></script>
+
+<script>
+// ── Reproductor inline — namespace PodPlayer para evitar conflictos ──
+const PodPlayer = (() => {
+  const AUDIOS = {}; // cache de elementos audio por id
+
+  function getAudio(id) {
+    if (!AUDIOS[id]) AUDIOS[id] = document.getElementById('audio-' + id);
+    return AUDIOS[id];
+  }
+
+  function fmt(s) {
+    if (!s || isNaN(s)) return '0:00';
+    return Math.floor(s/60) + ':' + Math.floor(s%60).toString().padStart(2,'0');
+  }
+
+  function setIcon(id, icon) {
+    ['player-' + id, 'player-' + id + '-featured'].forEach(pid => {
+      const p = document.getElementById(pid);
+      if (!p) return;
+      const btn = p.querySelector('.ip-play');
+      if (btn) btn.textContent = icon;
+    });
+    const card = document.getElementById('player-' + id);
+    const sideBtn = card && card.closest('.pod-item') && card.closest('.pod-item').querySelector('.pod-item-play');
+    if (sideBtn) sideBtn.textContent = icon;
+  }
+
+  function syncBars(id) {
+    const a = getAudio(id);
+    if (!a || !a.duration) return;
+    const pct = (a.currentTime / a.duration) * 100;
+    const cur = fmt(a.currentTime);
+    [id, id + 'f'].forEach(suffix => {
+      const b = document.getElementById('bar-' + suffix);
+      const c = document.getElementById('cur-' + suffix);
+      if (b) b.value = pct;
+      if (c) c.textContent = cur;
+    });
+  }
+
+  function bindAudio(id) {
+    const a = getAudio(id);
+    if (!a) return;
+    a.addEventListener('loadedmetadata', () => {
+      const t = fmt(a.duration);
+      [id, id + 'f'].forEach(suffix => {
+        const d = document.getElementById('dur-' + suffix);
+        if (d) d.textContent = t;
+      });
+    });
+    a.addEventListener('timeupdate', () => syncBars(id));
+    a.addEventListener('ended', () => setIcon(id, '▶'));
+  }
+
+  function toggle(id) {
+    const player  = document.getElementById('player-' + id);
+    const playerF = document.getElementById('player-' + id + '-featured');
+    const audio   = getAudio(id);
+
+    // Sin audio real → solo abrir/cerrar (próximamente)
+    if (!audio) {
+      if (player) player.classList.toggle('open');
+      return;
+    }
+
+    const isOpen    = player && player.classList.contains('open');
+    const isPlaying = !audio.paused;
+
+    // Cerrar y pausar todos los demás
+    document.querySelectorAll('.inline-player').forEach(p => {
+      const pid = p.id;
+      if (pid !== 'player-' + id && pid !== 'player-' + id + '-featured') {
+        p.classList.remove('open');
+      }
+    });
+    document.querySelectorAll('.inline-player audio').forEach(a => {
+      if (a !== audio) a.pause();
+    });
+
+    if (isOpen && isPlaying) {
+      audio.pause();
+      setIcon(id, '▶');
+    } else {
+      if (player)  player.classList.add('open');
+      if (playerF) playerF.classList.add('open');
+      audio.play().catch(() => {});
+      setIcon(id, '⏸');
+    }
+  }
+
+  function seek(id, val) {
+    const a = getAudio(id);
+    if (a && a.duration) a.currentTime = (val / 100) * a.duration;
+  }
+
+  // Inicializar todos los audios presentes
+  function init() {
+    document.querySelectorAll('.inline-player audio').forEach(a => {
+      const id = a.id.replace('audio-', '');
+      bindAudio(id);
+    });
+  }
+
+  return { toggle, seek, init };
+})();
+
+// Funciones globales que usan el namespace
+function toggleInline(id)       { PodPlayer.toggle(id); }
+function toggleInlineFeatured() { PodPlayer.toggle('1'); }
+function seekInline(id, val)    { PodPlayer.seek(id, val); }
+
+document.addEventListener('DOMContentLoaded', () => PodPlayer.init());
+</script>
+
+<!-- ───────── CARACOL ───────── -->
+<div class="snail-btn">
+  <div class="snail-bubble" id="snailBubble">
+    <button class="snail-close" onclick="closeSnail()">
+      ✕
+    </button>
+
+    <strong>
+      ¡Hola! Soy Niki
+    </strong>
+
+    <p>
+      ¿Qué quieres explorar?
+    </p>
+
+    <ul>
+
+      <li>
+        <a href="galeria.html">📸 Ver galería</a>
+      </li>
+
+      <li>
+        <a href="podcast.html">🎙 Escuchar podcast</a>
+      </li>
+
+      <li>
+        <a href="voluntariado.html">🤝 Voluntariado</a>
+      </li>
+
+      <li>
+        <a href="donaciones.html">💛 Donar</a>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- BOTÓN DEL CARACOL -->
+  <button class="snail-face" onclick="toggleSnail()">
+    <img src="Fotos/Caracol.webp" alt="Caracol">
+  </button>
+
+  <span class="snail-label">
+    Ayuda
+  </span>
+
+</div>
+
+</body>
+</html>

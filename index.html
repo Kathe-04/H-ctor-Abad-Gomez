@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Héctor Abad Gómez</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ── SMOOTH SCROLL GLOBAL ── */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* ── CARRUSEL UNA TARJETA ── */
+    .carousel-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      flex: 1;
+      overflow: hidden;
+      padding: 1.5rem 0.5rem 2rem;
+    }
+
+    .ccard {
+      grid-area: 1 / 1;
+      cursor: pointer;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      position: relative;
+      overflow: hidden;
+      max-width: 520px;
+      width: 100%;
+      margin: 0 auto;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(60px);
+      transition:
+        opacity 0.45s cubic-bezier(.22,.68,0,1.2),
+        transform 0.45s cubic-bezier(.22,.68,0,1.2),
+        box-shadow 0.35s ease;
+    }
+
+    .ccard.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
+    }
+
+    .ccard.exit-left {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+
+    .ccard.exit-right {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+
+    /* Indicadores de puntos */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 0.5rem;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(234,88,12,0.2);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .carousel-dot.active {
+      background: #ea580c;
+      transform: scale(1.3);
+    }
+
+    /* Contador */
+    .carousel-counter {
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      color: rgba(100,100,100,0.7);
+      margin-top: 0.3rem;
+      letter-spacing: 0.05em;
+    }
+
+    .ccard::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(234,88,12,0.06) 0%, rgba(20,184,166,0.04) 100%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .ccard:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.16), 0 4px 12px rgba(234,88,12,0.12);
+    }
+
+    .ccard:hover::before {
+      opacity: 1;
+    }
+
+    .ccard-img {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ccard-img img {
+      transition: transform 0.5s cubic-bezier(.22,.68,0,1.2);
+      display: block;
+      width: 100%;
+    }
+
+    .ccard:hover .ccard-img img {
+      transform: scale(1.08);
+    }
+
+    /* ── BOTÓN OÍR COMPLETO ── */
+    .listen-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 1rem;
+      padding: 0.55rem 1.2rem;
+      background: linear-gradient(135deg, #ea580c, #f97316);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      text-decoration: none;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      box-shadow: 0 4px 14px rgba(234,88,12,0.35);
+    }
+
+    .listen-btn::before {
+      content: '🎙';
+      font-size: 0.9rem;
+    }
+
+    .listen-btn:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 24px rgba(234,88,12,0.45);
+      background: linear-gradient(135deg, #c2410c, #ea580c);
+    }
+
+    .listen-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Asegurar que el body de la card tenga z-index sobre el ::before */
+    .ccard-body {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── CAROUSEL BUTTONS ── */
+    .carousel-btn {
+      background: #fff;
+      border: 2px solid rgba(234,88,12,0.25);
+      color: #ea580c;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      z-index: 2;
+    }
+    .carousel-btn:hover {
+      background: #ea580c;
+      color: #fff;
+      border-color: #ea580c;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(234,88,12,0.3);
+    }
+  </style>
+  <div class="lightbox" id="lightbox">
+  <img id="lightbox-img" src="">
+</div>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-badge"><img src="Fotos/Caracol.webp" alt="Logo"></div>
+    <div class="nav-name">I.E<small>Héctor Abad Gómez</small></div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" class="nav-active">Inicio</a></li>
+    <li>
+      <a href="#contenido">Contenido <span class="arr">▾</span></a>
+      <div class="drop">
+        <a href="galeria.html">Galería de fotos</a>
+        <a href="podcast.html">Podcast</a>
+      </div>
+    </li>
+    <li>
+      <a href="#voluntariado">Apóyanos <span class="arr">▾</span></a>
+      <div class="drop">
+        <a href="donaciones.html">Donaciones</a>
+        <a href="voluntariado.html">Voluntariado</a>
+      </div>
+    </li>
+    <li>
+      <a href="#nosotros">Nosotros <span class="arr">▾</span></a>
+      <div class="drop">
+        <a href="historia.html">Nuestra historia</a>
+        <a href="mision.html">Misión y visión</a>
+        <a href="equipo.html">El equipo</a>
+      </div>
+    </li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <button class="hamburger" id="ham" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Menú móvil -->
+<div class="mob-menu" id="mobMenu">
+  <a href="index.html" onclick="closeMenu()">Inicio</a>
+  <a href="historia.html" onclick="closeMenu()">Nuestra historia</a>
+  <a href="mision.html" onclick="closeMenu()"> Misión y Visión</a>
+  <a href="equipo.html" onclick="closeMenu()"> Equipo</a>
+  <a href="galeria.html" onclick="closeMenu()"> Galería de fotos</a>
+  <a href="podcast.html" onclick="closeMenu()"> Podcast</a>
+  <a href="donaciones.html" onclick="closeMenu()">Donaciones</a>
+  <a href="voluntariado.html" onclick="closeMenu()">Voluntariado</a>
+  <a href="contacto.html" onclick="closeMenu()">Contacto</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero" id="inicio">
+  <div class="hero-bg">
+  <img src="Fotos/Murales/Manos.webp" alt="Mural">
+  </div>
+  <div class="hero-overlay"></div>
+  <button class="hero-arrow left" onclick="prevSlide()">‹</button>
+  <button class="hero-arrow right" onclick="nextSlide()">›</button>
+  <div class="hero-dots">
+    <div class="hero-dot active" id="dot0"></div>
+    <div class="hero-dot" id="dot1"></div>
+    <div class="hero-dot" id="dot2"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-label">Héctor Abad Gómez</p>
+    <h1 id="hero-title">Raíces y Sueños</h1>
+    <p class="hero-sub" id="hero-sub">Identidad cultural y resistencia</p>
+    <a href="#contenido" class="btn-orange">Explorar más</a>
+  </div>
+</section>
+
+<!-- ── INTRO + STATS ── -->
+<div class="intro-bar">
+  <div class="intro-inner">
+    <p class="intro-text">La institución es un espacio de formación integral que, desde sus raíces de paz, identidad y transformación, impulsa formas de pensar y actuar que aportan a la construcción de nuestra tierra, nuestra gente y nuestros sueños.</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-n">4+</div><div class="stat-l">Proyectos</div></div>
+      <div class="stat"><div class="stat-n">2019</div><div class="stat-l">Desde ese año</div></div>
+      <div class="stat"><div class="stat-n">500+</div><div class="stat-l">Participantes</div></div>
+      <div class="stat"><div class="stat-n">40</div><div class="stat-l">Voluntarios</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CONTENIDO ── -->
+<section class="sec" id="contenido">
+  <div class="con">
+    <div class="sec-eyebrow">
+      <div class="sec-line"></div>
+      <span class="sec-lbl">Museo de Murales</span>
+      <div class="sec-line"></div>
+    </div>
+    <h2 class="sec-title">Arte que cuenta historias</h2>
+    <p class="sec-desc">Cada mural de nuestra institución es una ventana hacia la memoria colectiva, la identidad cultural y los sueños de nuestra comunidad. Escucha el podcast de cada obra y conoce su historia.</p>
+
+    <div class="tabs">
+      <button class="tab active" onclick="filterTab(this, 'todo')">Todo</button>
+      <button class="tab" onclick="filterTab(this, '2021')">2021</button>
+      <button class="tab" onclick="filterTab(this, '2022')">2022</button>
+      <button class="tab" onclick="filterTab(this, '2023')">2023</button>
+      <button class="tab" onclick="filterTab(this, '2024')">2024</button>
+    </div>
+
+   <div class="carousel-wrap">
+    <button class="carousel-btn left" onclick="moveCarousel(-1)">‹</button>
+      <div class="cards" id="cards">
+
+      <div class="ccard" data-y="2024" onclick="openModal('Las Alas del Barrio', 'Este mural nació de las conversaciones con los jóvenes del barrio sobre sus sueños, sus raíces y los vínculos que los conectan con el lugar donde crecieron. Fue pintado en colaboración con la comunidad durante tres fines de semana.')">
+        <div class="ccard-img">
+          <img src="Fotos/Murales/Niños.JPG" alt="Las Alas del Barrio"> 
+          <div class="ccard-img-ph">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="opacity:0.25"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span></span>
+          </div>
+          <div class="ccard-num">1</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-meta">
+            <span class="ccard-cat">Mural</span>
+            <span class="ccard-date">Colectivo Arte · Junio 2024 · Colegio del barrio</span>
+          </div>
+          <h3>Las Alas del Barrio</h3>
+          <p class="ccard-desc">Mural que nació de conversaciones con los jóvenes del barrio sobre sus sueños, sus raíces y los vínculos que los conectan con su territorio.</p>
+          <div class="ccard-eps">
+            <div class="ccard-eps-label">Los temas tratados</div>
+            <div class="ep-row" onclick="event.stopPropagation(); playEp(this)">
+              <div class="ep-ava">CA</div>
+              <div class="ep-info">
+                <div class="ep-info-top">Podcast · EP 1</div>
+                <div class="ep-info-name">La memoria del barrio</div>
+              </div>
+              <span class="ep-dur">1:23 min</span>
+              <button class="ep-play">▶</button>
+            </div>
+          </div>
+          <a href="podcast.html" class="listen-btn" onclick="event.stopPropagation()">
+            Oír completo
+          </a>
+        </div>
+      </div>
+
+      <div class="ccard" data-y="2023" onclick="openModal('Manos que Construyen Paz', 'Serie fotográfica que documenta el proceso colectivo donde más de cuarenta personas del barrio participaron activamente durante tres fines de semana.')">
+        <div class="ccard-img">
+         <img src="Fotos/Murales/Colegio.webp" alt="Manos que Construyen Paz"> 
+          <div class="ccard-img-ph">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="opacity:0.25"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Tu foto aquí</span>
+          </div>
+          <div class="ccard-num">2</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-meta">
+            <span class="ccard-cat">Mural</span>
+            <span class="ccard-date">María García · Marzo 2023</span>
+          </div>
+          <h3>Manos que Construyen Paz</h3>
+          <p class="ccard-desc">Serie fotográfica que documenta el proceso colectivo de construcción del mural, donde más de cuarenta personas del barrio participaron activamente.</p>
+          <div class="ccard-eps">
+            <div class="ccard-eps-label">Los temas tratados</div>
+            <div class="ep-row" onclick="event.stopPropagation(); playEp(this)">
+              <div class="ep-ava">MG</div>
+              <div class="ep-info">
+                <div class="ep-info-top">Podcast · EP 2</div>
+                <div class="ep-info-name">Fotografía y memoria colectiva</div>
+              </div>
+              <span class="ep-dur">1:30 min</span>
+              <button class="ep-play">▶</button>
+            </div>
+          </div>
+          <a href="podcast.html" class="listen-btn" onclick="event.stopPropagation()">
+            Oír completo
+          </a>
+        </div>
+      </div>
+
+      <div class="ccard" data-y="2024" onclick="openModal('Raíces y Sueños', 'Nació de plasmar la memoria de la comunidad. Los artistas trabajaron con estudiantes de los colegios del barrio para crear esta pieza referente del territorio.')">
+        <div class="ccard-img">
+          <img src="Fotos/Murales/Comunidad.JPG" alt="Raíces y Sueños"> 
+          <div class="ccard-img-ph">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="opacity:0.25"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Tu foto aquí</span>
+          </div>
+          <div class="ccard-num">3</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-meta">
+            <span class="ccard-cat">Mural</span>
+            <span class="ccard-date">Arte Social · Enero 2024 · Galería Sueños</span>
+          </div>
+          <h3>Raíces y Sueños</h3>
+          <p class="ccard-desc">Nació de la idea de plasmar la memoria de la comunidad, trabajando con estudiantes de los colegios del barrio para crear una pieza que hoy es referente del territorio.</p>
+          <div class="ccard-eps">
+            <div class="ccard-eps-label">Los temas tratados</div>
+            <div class="ep-row" onclick="event.stopPropagation(); playEp(this)">
+              <div class="ep-ava">AS</div>
+              <div class="ep-info">
+                <div class="ep-info-top">Podcast · EP 3</div>
+                <div class="ep-info-name">Identidad y territorio</div>
+              </div>
+              <span class="ep-dur">1:13 min</span>
+              <button class="ep-play">▶</button>
+            </div>
+          </div>
+          <a href="podcast.html" class="listen-btn" onclick="event.stopPropagation()">
+            Oír completo
+          </a>
+        </div>
+      </div>
+
+      <div class="ccard" data-y="2022" onclick="openModal('La Fuerza del Pueblo', 'Taller de grafiti y fotografía para jóvenes del barrio donde aprendieron técnicas de expresión artística y documentación visual de su entorno.')">
+        <div class="ccard-img">
+          <img src="Fotos/Murales/Caras.JPG" alt="La Fuerza del Pueblo"> 
+          <div class="ccard-img-ph">
+            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" style="opacity:0.25"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Tu foto aquí</span>
+          </div>
+          <div class="ccard-num">4</div>
+        </div>
+        <div class="ccard-body">
+          <div class="ccard-meta">
+            <span class="ccard-cat">Taller</span>
+            <span class="ccard-date">Juan Rodríguez · Nov 2022</span>
+          </div>
+          <h3>La Fuerza del Pueblo</h3>
+          <p class="ccard-desc">Taller de grafiti y fotografía para jóvenes del barrio donde aprendieron técnicas de expresión artística y documentación visual de su entorno y su historia.</p>
+          <div class="ccard-eps">
+            <div class="ccard-eps-label">Los temas tratados</div>
+            <div class="ep-row" onclick="event.stopPropagation(); playEp(this)">
+              <div class="ep-ava">JR</div>
+              <div class="ep-info">
+                <div class="ep-info-top">Podcast · EP 4</div>
+                <div class="ep-info-name">La fuerza del pueblo</div>
+              </div>
+              <span class="ep-dur">1:08 min</span>
+              <button class="ep-play">▶</button>
+            </div>
+          </div>
+          <a href="podcast.html" class="listen-btn" onclick="event.stopPropagation()">
+            Oír completo
+          </a>
+        </div>
+      </div>
+
+      </div><!-- /cards -->
+
+      <button class="carousel-btn right" onclick="moveCarousel(1)">›</button>
+  </div>
+  <div class="carousel-dots" id="carouselDots"></div>
+  <div class="carousel-counter" id="carouselCounter"></div>
+  </div>
+</section>
+
+<!-- ── VOLUNTARIADO ── -->
+<section class="vol-sec" id="voluntariado">
+  <div class="vol-inner">
+    <div class="vol-eyebrow">
+      <div class="vol-line"></div>
+      <span class="vol-lbl">Sé parte de nosotros</span>
+      <div class="vol-line"></div>
+    </div>
+    <h2 class="vol-title">¿Quieres ser parte de este proyecto cultural?</h2>
+    <p class="vol-desc">Puedes donar talentos para nuestros murales, proponer tu trabajo como artista o colaborar gratis por nuestras tradiciones.</p>
+    <div class="">
+    <a href="voluntariado.html" class="btn-orange">Quiero participar</a>
+  </div>
+  </div>
+</section>
+
+<!-- ───────── ALIADOS ───────── -->
+
+<section class="partners">
+
+  <div class="partners-track">
+    <div class="partner-item">
+    <a href="https://www.udem.edu.co/" target="_blank">
+    <img src="Fotos/Alianzas/UDEM.webp" alt="UDEM">
+    </a></div>
+
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/UDEA.webp" alt="">
+    </div>
+
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/Manguala.webp" alt="">
+    </div>
+
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/Sura.webp" alt="">
+    </div>
+
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/MinTIC.webp" alt="">
+    </div>
+
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/Secretaria.webp" alt="">
+    </div>
+
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/Pintuco.webp" alt="">
+    </div>
+
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/Chocolate.webp" alt="">
+    </div>
+
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/Corpocentro.webp" alt="">
+    </div>
+
+    <!-- DUPLICADOS -->
+
+    <div class="partner-item">
+   <a href="https://www.udem.edu.co/" target="_blank">
+    <img src="Fotos/Alianzas/UDEM.webp" alt="UDEM">
+    </a></div>
+
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/UDEA.webp" alt="">
+    </div>
+
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/Manguala.webp" alt="">
+    </div>
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/Sura.webp" alt="">
+    </div>
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/MinTIC.webp" alt="">
+    </div>
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/Secretaria.webp" alt="">
+    </div>
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/Pintuco.webp" alt="">
+    </div>
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/Chocolate.webp" alt="">
+    </div>
+    <div class="partner-item">
+      <img src="Fotos/Alianzas/Corpocentro.webp" alt="">
+    </div>
+  </div>
+
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">
+      <div class="foot-logo-wrap">
+        <div class="nav-badge">
+          <img src="Fotos/Caracol.webp" alt="">
+        </div>
+        <div class="foot-name">
+          Raíces y Sueños
+          <small>Medellín</small>
+        </div>
+      </div>
+      <p class="foot-brand-desc">
+        Proyecto cultural enfocado en la memoria, el arte y la transformación social.
+      </p>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/i.e.hectorabadgomez/" target="_blank" class="fsoc" title="Instagram">IG</a>
+        <a href="https://www.tiktok.com/@ie_hectorabadgomez" target="_blank" class="fsoc" title="TikTok">TK</a>
+        <a href="https://www.youtube.com/@Instituci%C3%B3nEducativaH%C3%A9ctorAbad" target="_blank" class="fsoc" title="YouTube">YT</a>
+        <a href="https://open.spotify.com/show/0t5j8xwTU0EZu17c2sRldK?si=yj74eSirT-2tcKzNIiZzvQ" target="_blank" class="fsoc" title="Spotify">SP</a>
+      </div>
+    </div>
+    <div class="foot-col">
+
+      <h4>Contacto</h4>
+
+      <p>
+        Cra. 44 #43-96
+      </p>
+
+      <p>
+        Medellín, Colombia
+      </p>
+
+      <a href="mailto:proyectoshectorabadgomez@gmail.com">
+        proyectoshectorabadgomez@gmail.com
+      </a>
+
+    </div>
+
+    <div class="foot-col">
+
+      <h4>Explorar</h4>
+
+      <a href="galeria.html">
+        Galería
+      </a>
+
+      <a href="podcast.html">
+        Podcast
+      </a>
+
+      <a href="donaciones.html">
+        Donaciones
+      </a>
+    </div>
+  </div>
+
+  <div class="foot-bottom">
+    <span>
+      © 2026 Raíces y Sueños
+    </span>
+    <span>
+      Hecho en Medellín
+    </span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<!-- ───────── CARACOL ───────── -->
+<div class="snail-btn">
+  <div class="snail-bubble" id="snailBubble">
+    <button class="snail-close" onclick="closeSnail()">
+      ✕
+    </button>
+
+    <strong>
+      ¡Hola! Soy Niki
+    </strong>
+
+    <p>
+      ¿Qué quieres explorar?
+    </p>
+
+    <ul>
+
+      <li>
+        <a href="galeria.html">📸 Ver galería</a>
+      </li>
+
+      <li>
+        <a href="podcast.html">🎙 Escuchar podcast</a>
+      </li>
+
+      <li>
+        <a href="voluntariado.html">🤝 Voluntariado</a>
+      </li>
+
+      <li>
+        <a href="donaciones.html">💛 Donar</a>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- BOTÓN DEL CARACOL -->
+  <button class="snail-face" onclick="toggleSnail()">
+    <img src="Fotos/Caracol.webp" alt="Caracol">
+  </button>
+
+  <span class="snail-label">
+    Ayuda
+  </span>
+
+</div>
+
+<!-- ── MODAL ── -->
+<div class="modal" id="modal" onclick="closeModalOutside(event)">
+  <div class="mbox">
+    <div class="mbox-img">
+      <span style="color:var(--muted)">Imagen del proyecto</span>
+    </div>
+    <div class="mbox-body">
+      <button class="mclose" onclick="closeModal()">✕</button>
+      <h3 id="mtitle" style="font-family:'Merriweather',serif;font-size:1.3rem;margin-bottom:0.5rem;margin-top:0.3rem"></h3>
+      <p id="mdesc" style="font-size:0.87rem;color:var(--muted);line-height:1.7"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── NAV MÓVIL ── */
+function toggleMenu() {
+  const menu = document.getElementById('mobMenu');
+  const ham = document.getElementById('ham');
+  menu.classList.toggle('open');
+  ham.classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobMenu').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+}
+
+/* ── BÚSQUEDA ── */
+function toggleSearch() {
+  const q = prompt('¿Qué estás buscando?');
+  if (q) alert('Buscando: "' + q + '"...\n(Conecta tu buscador real aquí)');
+}
+
+/* ── SMOOTH SCROLL para enlaces internos ── */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
+    const target = document.querySelector(targetId);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      closeMenu();
+    }
+  });
+});
+
+/* ── HERO SLIDER ── */
+const slides = [
+  { title: 'Raíces y Sueños', sub: 'Identidad cultural y resistencia' },
+  { title: 'Arte que cuenta historias', sub: 'Murales, fotos y voces del barrio' },
+  { title: 'Sé parte del cambio', sub: 'Voluntariado y donaciones abiertas' },
+];
+let current = 0;
+function goToSlide(n) {
+  current = (n + slides.length) % slides.length;
+  document.getElementById('hero-title').textContent = slides[current].title;
+  document.getElementById('hero-sub').textContent = slides[current].sub;
+  document.querySelectorAll('.hero-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+}
+function nextSlide() { goToSlide(current + 1); }
+function prevSlide() { goToSlide(current - 1); }
+setInterval(nextSlide, 5000);
+
+/* ── FILTRO TABS ── */
+function filterTab(btn, year) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  carouselCards.forEach(c => {
+    c.classList.remove('active', 'exit-left', 'exit-right');
+    c.style.display = (year === 'todo' || c.dataset.y === year) ? '' : 'none';
+  });
+  carouselIndex = 0;
+  initCarousel();
+}
+
+/* ── CARRUSEL UNA TARJETA ── */
+let carouselIndex = 0;
+let carouselCards = [];
+let isAnimating = false;
+
+function initCarousel() {
+  carouselCards = Array.from(document.querySelectorAll('.ccard'));
+  const dotsContainer = document.getElementById('carouselDots');
+  dotsContainer.innerHTML = '';
+  carouselCards.forEach((card, i) => {
+    card.classList.remove('active', 'exit-left', 'exit-right');
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Ir a tarjeta ' + (i + 1));
+    dot.onclick = () => goToCard(i);
+    dotsContainer.appendChild(dot);
+  });
+  const visible = carouselCards.filter(c => c.style.display !== 'none');
+  if (visible.length > 0) {
+    carouselIndex = carouselCards.indexOf(visible[0]);
+    carouselCards[carouselIndex].classList.add('active');
+  }
+  updateCounter();
+}
+
+function getVisibleCards() {
+  return carouselCards.filter(c => c.style.display !== 'none');
+}
+
+function goToCard(targetIndex, direction) {
+  if (isAnimating) return;
+  const visible = getVisibleCards();
+  if (visible.length === 0) return;
+  const currentCard = carouselCards[carouselIndex];
+  const targetCard = carouselCards[targetIndex];
+  if (currentCard === targetCard) return;
+
+  isAnimating = true;
+  const goingRight = direction !== undefined ? direction > 0 : targetIndex > carouselIndex;
+
+  currentCard.classList.remove('active');
+  currentCard.classList.add(goingRight ? 'exit-left' : 'exit-right');
+
+  targetCard.style.display = '';
+  targetCard.classList.remove('exit-left', 'exit-right', 'active');
+  targetCard.style.transform = goingRight ? 'translateX(60px)' : 'translateX(-60px)';
+  targetCard.style.opacity = '0';
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      targetCard.style.transform = '';
+      targetCard.style.opacity = '';
+      targetCard.classList.add('active');
+    });
+  });
+
+  setTimeout(() => {
+    currentCard.classList.remove('exit-left', 'exit-right');
+    carouselIndex = targetIndex;
+    isAnimating = false;
+    updateDots();
+    updateCounter();
+  }, 460);
+}
+
+function moveCarousel(direction) {
+  const visible = getVisibleCards();
+  if (visible.length === 0) return;
+  const currentVisible = visible.indexOf(carouselCards[carouselIndex]);
+  const nextVisible = (currentVisible + direction + visible.length) % visible.length;
+  goToCard(carouselCards.indexOf(visible[nextVisible]), direction);
+}
+
+function updateDots() {
+  const visible = getVisibleCards();
+  const dots = document.querySelectorAll('.carousel-dot');
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === visible.indexOf(carouselCards[carouselIndex])));
+}
+
+function updateCounter() {
+  const visible = getVisibleCards();
+  const idx = visible.indexOf(carouselCards[carouselIndex]);
+  const counter = document.getElementById('carouselCounter');
+  if (counter) counter.textContent = (idx + 1) + ' / ' + visible.length;
+}
+
+document.addEventListener('DOMContentLoaded', initCarousel);
+
+/* ── PLAY EPISODIO ── */
+function playEp(row) {
+  const name = row.querySelector('.ep-info-name').textContent;
+  const btn = row.querySelector('.ep-play');
+  const playing = btn.textContent === '⏸';
+  document.querySelectorAll('.ep-play').forEach(b => b.textContent = '▶');
+  if (!playing) {
+    btn.textContent = '⏸';
+    alert('▶ Reproduciendo: "' + name + '"\n\n(Conecta tu reproductor o embed de podcast aquí)');
+  }
+}
+
+/* ── MODAL ── */
+function openModal(title, desc) {
+  document.getElementById('mtitle').textContent = title;
+  document.getElementById('mdesc').textContent = desc;
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+
+/* ── CARACOL ── */
+function toggleSnail() { document.getElementById('snailBubble').classList.toggle('open'); }
+function closeSnail() { document.getElementById('snailBubble').classList.remove('open'); }
+
+/* ── NEWSLETTER ── */
+function subscribeNewsletter() {
+  const email = document.getElementById('newsEmail').value;
+  if (!email || !email.includes('@')) { alert('Por favor ingresa un correo válido.'); return; }
+  alert('¡Gracias! Te suscribiste con: ' + email);
+  document.getElementById('newsEmail').value = '';
+}
+
+/* ── CERRAR MENÚ AL CLICK EXTERNO ── */
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobMenu');
+  const ham = document.getElementById('ham');
+  const nav = document.querySelector('nav');
+  if (menu.classList.contains('open') && !nav.contains(e.target) && !menu.contains(e.target)) {
+    closeMenu();
+  }
+});
+</script>
+</body>
+</html>
