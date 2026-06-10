@@ -1,6 +1,6 @@
 /* ─── FUENTES ─── */
 @font-face { font-family: 'Bryndan'; src: url('fonts/BryndanWriteBook-nGPM.ttf'); }
-@font-face { font-family: 'Marykate'; src: url('fonts/patrick-hand/PatrickHand-Regular.ttf'); }
+@font-face { font-family: 'Marykate'; src: url('fonts/FontsFree-Net-Marykate-Regular.ttf'); }
 
 /* ─── RESET ─── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
