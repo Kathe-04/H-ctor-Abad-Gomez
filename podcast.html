@@ -160,7 +160,7 @@
     <!-- EP 02 -->
     <div class="pod-item" data-y="2023">
       <div class="pod-item-num">
-        <img src="Fotos/Murales/Colegio.webp">
+        <img src="Fotos/Murales/Colegio.JPG" alt="">
         <div class="pod-item-num-text">2</div>
       </div>
       <div class="pod-item-info">
@@ -220,7 +220,7 @@
       <div class="pod-item-info">
         <div class="pod-item-ep">EP 04 · Nov 2022</div>
         <div class="pod-item-title">La fuerza del pueblo</div>
-        <div class="pod-item-desc">Mural "La Fuerza del Pueblo" · Juan Rodríguez</div>
+        <div class="pod-item-desc">Mural "La Fuerza del Pueblo" · Jhoan Sebastián Montoya</div>
         <div class="pod-item-meta">Arte urbano, grafiti y expresión juvenil</div>
         <div class="inline-player" id="player-4">
           <audio id="audio-4" src="Audios/La fuerza del pueblo.wav" preload="none"></audio>
@@ -238,6 +238,87 @@
       </div>
     </div>
 
+    <!-- EP 05 -->
+    <div class="pod-item" data-y="2022">
+      <div class="pod-item-num">
+        <img src="Fotos/Murales/Plato.webp" alt="">
+        <div class="pod-item-num-text">5</div>
+      </div>
+      <div class="pod-item-info">
+        <div class="pod-item-ep">EP 05 · Agosto 2020</div>
+        <div class="pod-item-title">El plato que nunca quedaba vacío</div>
+        <div class="pod-item-desc">Mural "El plato que nunca quedaba vacío" · Juan David Jiménez</div>
+        <div class="pod-item-meta">Arte urbano, grafiti y expresión juvenil</div>
+        <div class="inline-player" id="player-5">
+          <audio id="audio-5" src="Audios/El plato  que nunca quedaba vacío.wav" preload="none"></audio>
+          <button class="ip-play" onclick="toggleInline('5')">▶</button>
+          <span class="ip-time" id="cur-5">0:00</span>
+          <input type="range" class="ip-bar" id="bar-5" value="0" min="0" max="100" step="0.1" oninput="seekInline('5', this.value)">
+          <span class="ip-time" id="dur-5">--:--</span>
+          <span class="ip-vol">🔊</span>
+          <input type="range" class="ip-vol-bar" value="80" min="0" max="100" oninput="document.getElementById('audio-5').volume=this.value/100">
+        </div>
+      </div>
+      <div class="pod-item-right">
+        <span class="pod-item-dur">2:50 min</span>
+        <button class="pod-item-play" onclick="toggleInline('5')">▶</button>
+      </div>
+    </div>
+
+    <!-- EP 06 -->
+    <div class="pod-item" data-y="2022">
+      <div class="pod-item-num">
+        <img src="Fotos/Murales/hombreycuerdas.png" alt="">
+        <div class="pod-item-num-text">5</div>
+      </div>
+      <div class="pod-item-info">
+        <div class="pod-item-ep">EP 06 · Feb 2021</div>
+        <div class="pod-item-title">Nadie sabía exactamente cuándo aparecía</div>
+        <div class="pod-item-desc">Mural "Nadie sabía exactamente cuándo aparecía" · Christian Bran Arboleda</div>
+        <div class="pod-item-meta">Arte urbano, grafiti y expresión juvenil</div>
+        <div class="inline-player" id="player-6">
+          <audio id="audio-6" src="Audios/El tren que se alimentaba de recuerdos.wav" preload="none"></audio>
+          <button class="ip-play" onclick="toggleInline('6')">▶</button>
+          <span class="ip-time" id="cur-6">0:00</span>
+          <input type="range" class="ip-bar" id="bar-6" value="0" min="0" max="100" step="0.1" oninput="seekInline('6', this.value)">
+          <span class="ip-time" id="dur-6">--:--</span>
+          <span class="ip-vol">🔊</span>
+          <input type="range" class="ip-vol-bar" value="80" min="0" max="100" oninput="document.getElementById('audio-6').volume=this.value/100">
+        </div>
+      </div>
+      <div class="pod-item-right">
+        <span class="pod-item-dur">2:54 min</span>
+        <button class="pod-item-play" onclick="toggleInline('6')">▶</button>
+      </div>
+    </div>
+
+    <!-- EP 07 -->
+    <div class="pod-item" data-y="2022">
+      <div class="pod-item-num">
+        <img src="Fotos/Murales/Héctor con flores.webp" alt="">
+        <div class="pod-item-num-text">5</div>
+      </div>
+      <div class="pod-item-info">
+        <div class="pod-item-ep">EP 07 · Dic 2019</div>
+        <div class="pod-item-title">La ciudad de las máscaras caídas</div>
+        <div class="pod-item-desc">Mural "La ciudad de las máscaras caídas" · Juan Rodríguez</div>
+        <div class="pod-item-meta">Arte urbano, grafiti y expresión juvenil</div>
+        <div class="inline-player" id="player-7">
+          <audio id="audio-7" src="Audios/La ciudad de las máscaras caídas.wav" preload="none"></audio>
+          <button class="ip-play" onclick="toggleInline('7')">▶</button>
+          <span class="ip-time" id="cur-7">0:00</span>
+          <input type="range" class="ip-bar" id="bar-5" value="0" min="0" max="100" step="0.1" oninput="seekInline('7', this.value)">
+          <span class="ip-time" id="dur-7">--:--</span>
+          <span class="ip-vol">🔊</span>
+          <input type="range" class="ip-vol-bar" value="80" min="0" max="100" oninput="document.getElementById('audio-7').volume=this.value/100">
+        </div>
+      </div>
+      <div class="pod-item-right">
+        <span class="pod-item-dur">2:40 min</span>
+        <button class="pod-item-play" onclick="toggleInline('7')">▶</button>
+      </div>
+    </div>
+
   </div>
 
   <!-- PLATAFORMAS -->
@@ -245,7 +326,7 @@
     <h3>Escúchanos donde quieras</h3>
     <p>Disponible en tus plataformas de podcast favoritas</p>
     <div class="pod-platform-btns">
-      <a href="#" class="pod-platform-btn">🎵 Spotify</a>
+      <a href="https://open.spotify.com/show/0t5j8xwTU0EZu17c2sRldK?si=yj74eSirT-2tcKzNIiZzvQ" target="_blank" class="pod-platform-btn">🎵 Spotify</a>
       <a href="#" class="pod-platform-btn">🎙 Apple Podcasts</a>
       <a href="#" class="pod-platform-btn">▶ YouTube</a>
       <a href="#" class="pod-platform-btn">☁ SoundCloud</a>
@@ -273,7 +354,7 @@
         Proyecto cultural enfocado en la memoria, el arte y la transformación social.
       </p>
       <div class="foot-social">
-        <a href="https://www.instagram.com/i.e.hectorabadgomez/" target="_blank" class="fsoc" title="Instagram">IG</a>
+        <a href="https://www.instagram.com/museoescolarhag_/" target="_blank" class="fsoc" title="Instagram">IG</a>
         <a href="https://www.tiktok.com/@ie_hectorabadgomez" target="_blank" class="fsoc" title="TikTok">TK</a>
         <a href="https://www.youtube.com/@Instituci%C3%B3nEducativaH%C3%A9ctorAbad" target="_blank" class="fsoc" title="YouTube">YT</a>
         <a href="https://open.spotify.com/show/0t5j8xwTU0EZu17c2sRldK?si=yj74eSirT-2tcKzNIiZzvQ" target="_blank" class="fsoc" title="Spotify">SP</a>
