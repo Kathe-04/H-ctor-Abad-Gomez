@@ -447,6 +447,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 300; height: var(--na
 .snail-face img { width: 100%; object-fit: cover; display: block; }
 .snail-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal); background: #fff; padding: 0.15rem 0.5rem; border-radius: 999px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
 
+
 /* ─── FOOTER ─── */
 footer { background: var(--dark); color: rgba(255,255,255,0.55); }
 .foot-top { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 2rem; display: grid; grid-template-columns: auto 1fr 1fr; gap: 3rem; align-items: start; }
@@ -462,6 +463,35 @@ footer { background: var(--dark); color: rgba(255,255,255,0.55); }
 .foot-col a:hover { color: var(--orange2); }
 .foot-bottom { max-width: 1100px; margin: 0 auto; padding: 1.2rem 2rem; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; font-size: 0.7rem; color: rgba(255,255,255,0.25); }
 
+/* ── SECCIÓN NIKI ── */
+.niki-sec {background: linear-gradient(135deg, #fff7ed 0%, #fff 60%); border-top: 1px solid rgba(234,88,12,.1); border-bottom: 1px solid rgba(234,88,12,.1);padding: 5rem 2rem;}
+.niki-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex;align-items: center; justify-content: space-between; gap: 4rem;}
+.niki-text { flex: 1; max-width: 650px;}
+
+/* Imagen */
+.niki-img-wrap { position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0;}
+.niki-img { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 4px solid #ea580c; box-shadow: 0 0 0 8px rgba(234,88,12,.1),0 20px 40px rgba(234,88,12,.15);position: relative; z-index: 1; animation: nikiFloat 4s ease-in-out infinite;}
+
+@keyframes nikiFloat {  0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); }}
+.niki-ring { position: absolute; width: 240px; height: 240px; border-radius: 50%; border: 2px dashed rgba(234,88,12,.3); animation: nikiSpin 18s linear infinite;}
+
+@keyframes nikiSpin { to { transform: rotate(360deg); }}
+.niki-badge {  position: absolute; bottom: 10px; right: 20px; background: #ea580c; color: #fff; font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; z-index: 2; box-shadow: 0 4px 12px rgba(234,88,12,.3);}
+
+/* Texto */
+.niki-eyebrow {display: flex; align-items: center; gap: 10px; margin-bottom: .8rem; font-family: 'Inter', sans-serif; font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: #ea580c;}
+.niki-line { flex: 1; height: 1px; background: rgba(234,88,12,.3);}
+.niki-title { font-family: 'Merriweather', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 900; line-height: 1.15; color: #1a1a1a; margin-bottom: 1rem;}
+.niki-title span {  color: #ea580c; position: relative;}
+.niki-title span::after {content: ''; position: absolute; left: 0; bottom: -3px; width: 100%;height: 3px;background: linear-gradient(90deg, #ea580c, #f97316); border-radius: 2px;}
+.niki-desc { font-family: 'Inter', sans-serif; font-size: .95rem; line-height: 1.75; color: #555; max-width: 550px;}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .niki-inner { flex-direction: column; text-align: center;gap: 2rem;}
+  .niki-text { max-width: 100%; }
+  .niki-eyebrow { justify-content: center; }
+}
 /* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
   .hero h1 { font-size: 2.2rem; }
